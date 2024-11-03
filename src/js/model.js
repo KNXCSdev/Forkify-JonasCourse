@@ -1,12 +1,14 @@
-import { async } from 'regenerator-runtime';
-import { API_URL } from './config.js';
-import { getJSON } from './helpers.js';
+import { async } from "regenerator-runtime";
+import { API_URL, RES_PER_PAGE } from "./config.js";
+import { getJSON } from "./helpers.js";
 
 export const state = {
   recipe: {},
   search: {
-    query: '',
+    query: "",
     results: [],
+    page: 1,
+    resultsPerPage: RES_PER_PAGE,
   },
 };
 
@@ -38,7 +40,7 @@ export const loadSearchResults = async function (query) {
     console.log(data);
 
     //CHANGED names of the objects AND changed order
-    state.search.results = data.data.recipes.map(rec => {
+    state.search.results = data.data.recipes.map((rec) => {
       return {
         id: rec.id,
         title: rec.title,
@@ -51,4 +53,13 @@ export const loadSearchResults = async function (query) {
     console.error(`${err} 💥💥💥`);
     throw err;
   }
+};
+
+export const getSearchResultsPage = function (page = state.search.page) {
+  state.search.page = page;
+
+  const start = (page - 1) * 10;
+  const end = page * 10;
+
+  return state.search.results.slice(start, end);
 };
