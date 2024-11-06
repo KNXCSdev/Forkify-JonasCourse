@@ -156,7 +156,7 @@ class RecipeView extends View {
           </svg>
         </div>
         <p>No recipes found for your query. Please try again!${message}</p>
-    </div> -->
+    </div> 
     `;
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
