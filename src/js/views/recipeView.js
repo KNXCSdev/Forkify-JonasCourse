@@ -1,28 +1,26 @@
 //iMPORT ICONS
-import icons from 'url:../../img/icons.svg';
-import { fractional } from 'fractional';
-import View from './View';
+import icons from "url:../../img/icons.svg";
+import { fractional } from "fractional";
+import View from "./View.js";
 
 class RecipeView extends View {
-  _parentElement = document.querySelector('.recipe');
+  _parentElement = document.querySelector(".recipe");
   _data;
-  _errorMessage = 'We couldnt find that recipe. Please try another one';
-  _message = 'Start by searching for a recipe or an ingredient. Have fun!';
+  _errorMessage = "We couldnt find that recipe. Please try another one";
+  _message = "Start by searching for a recipe or an ingredient. Have fun!";
 
   render(data) {
     this._data = data;
     const markup = this._generateMarkup();
     //REMOVING ALL ELEMENTS FIRST
     this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
   _generateMarkup() {
     return ` 
       <figure class="recipe__fig">
-            <img src="${this._data.image}" alt="${
-      this._data.title
-    }" class="recipe__img" />
+            <img src="${this._data.image}" alt="${this._data.title}" class="recipe__img" />
             <h1 class="recipe__title">
               <span>${this._data.title}</span>
             </h1>
@@ -74,9 +72,7 @@ class RecipeView extends View {
           <div class="recipe__ingredients">
             <h2 class="heading--2">Recipe ingredients</h2>
             <ul class="recipe__ingredient-list">
-            ${this._data.ingredients
-              .map(this._generateMarkupIngredient)
-              .join('')}
+            ${this._data.ingredients.map(this._generateMarkupIngredient).join("")}
             </ul>
           </div>
 
@@ -84,9 +80,7 @@ class RecipeView extends View {
             <h2 class="heading--2">How to cook it</h2>
             <p class="recipe__directions-text">
               This recipe was carefully designed and tested by
-              <span class="recipe__publisher">${
-                this._data.publisher
-              }</span>. Please check out
+              <span class="recipe__publisher">${this._data.publisher}</span>. Please check out
               directions at their website.
             </p>
             <a
@@ -104,11 +98,11 @@ class RecipeView extends View {
   }
 
   addHandlerRender(handler) {
-    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+    ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, handler));
   }
 
   _clear() {
-    this._parentElement.innerHTML = '';
+    this._parentElement.innerHTML = "";
   }
 
   renderSpinner() {
@@ -120,7 +114,7 @@ class RecipeView extends View {
         </div> 
   `;
     this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
   renderError(message = this._errorMessage) {
@@ -135,7 +129,7 @@ class RecipeView extends View {
     </div> 
     `;
     this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
   renderMessage(message = this._message) {
@@ -150,7 +144,7 @@ class RecipeView extends View {
     </div> -->
     `;
     this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
   _generateMarkupIngredient(ing) {
@@ -160,7 +154,7 @@ class RecipeView extends View {
         <use href="${icons}#icon-check"></use>
       </svg>
       <div class="recipe__quantity">${
-        ing.quantity ? new Fraction(ing.quantity).toString() : ''
+        ing.quantity ? new Fraction(ing.quantity).toString() : ""
       }</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ing.unit}</span>

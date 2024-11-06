@@ -1,13 +1,13 @@
-import View from './View';
-import icons from 'url:../../img/icons.svg';
+import View from "./View.js";
+import icons from "url:../../img/icons.svg";
 
 class ResultsView extends View {
-  _parentElement = document.querySelector('.results');
-  _errorMessage = 'No recepies Found for your query please try again ;';
-  _message = '';
+  _parentElement = document.querySelector(".results");
+  _errorMessage = "No recepies Found for your query please try again ;";
+  _message = "";
 
   _generateMarkup() {
-    return this._data.map(this._generateMarkupPreview).join('');
+    return this._data.map(this._generateMarkupPreview).join("");
   }
 
   _generateMarkupPreview(result) {
