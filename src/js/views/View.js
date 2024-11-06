@@ -24,7 +24,7 @@ export default class View {
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
 
-      if (!newEl.isEqualNode(curEl) && newEl.firstChild.nodeValue.trim() !== "") {
+      if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") {
         curEl.textContent = newEl.textContent;
       }
 
@@ -59,7 +59,7 @@ export default class View {
           </svg>
         </div>
         <p>No recipes found for your query. Please try again!${message}</p>
-    </div> -->
+    </div> 
     `;
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
@@ -74,7 +74,7 @@ export default class View {
           </svg>
         </div>
         <p>No recipes found for your query. Please try again!${message}</p>
-    </div> -->
+    </div> 
     `;
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
