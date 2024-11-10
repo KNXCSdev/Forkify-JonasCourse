@@ -24,12 +24,18 @@ class PaginationView extends View {
 
     // Page 1, and there are other pages
     if (curPage === 1) {
-      return this._generateButtonMarkup("next", curPage + 1);
+      return `${this._generateButtonMarkup("next", curPage + 1)}${this._generateNumberPages(
+        curPage,
+        numPages
+      )}`;
     }
 
     // Last Page
     if (curPage === numPages) {
-      return this._generateButtonMarkup("prev", curPage - 1);
+      return `${this._generateButtonMarkup("prev", curPage - 1)}${this._generateNumberPages(
+        curPage,
+        numPages
+      )}`;
     }
 
     // Other page
