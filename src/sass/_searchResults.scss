@@ -15,10 +15,14 @@
   margin-top: auto;
   padding: 0 3.5rem;
   align-items: center;
-
+  position: relative;
   &__pages {
     font-size: 2.1rem;
     color: $color-primary;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   &__btn--next {
