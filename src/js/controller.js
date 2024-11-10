@@ -12,6 +12,7 @@ import resultsView from "./views/resultsView.js";
 import paginationView from "./views/paginationView.js";
 import bookmarksView from "./views/bookmarksView.js";
 import { MODAL_CLOSE_SEC } from "./config.js";
+import cartView from "./views/cartView.js";
 
 if (module.hot) {
   module.hot.accept();
@@ -97,6 +98,20 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlDeleteCartItem = function (ingredientIndex) {
+  // Check if index is valid
+  if (ingredientIndex >= 0 && ingredientIndex < model.state.recipe.ingredients.length) {
+    model.state.recipe.ingredients.splice(ingredientIndex, 1);
+
+    cartView.render(model.state.recipe.ingredients);
+  }
+};
+
+const controlAddShopping = function () {
+  //3) Render bookmarks
+  cartView.render(model.state.recipe.ingredients);
+};
+
 const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
@@ -136,6 +151,9 @@ const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
+  recipeView.addHandlerAddShopping(controlAddShopping);
+
+  cartView.addHandlerDeleteItem(controlDeleteCartItem); // Handle item deletion
 
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);

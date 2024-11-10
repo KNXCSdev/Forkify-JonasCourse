@@ -108,12 +108,44 @@
   right: -32.5rem !important;
   &__list {
     list-style: none;
+    padding: 2rem 3rem;
+    max-height: 50rem;
+    overflow-y: scroll;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-grad-2;
   }
 
   &:hover,
   .nav__btn--cart:hover + & {
     visibility: visible;
     opacity: 1;
+  }
+
+  &__quantity {
+    font-size: 2rem;
+    line-height: 3;
+    width: 55ch; /* Adjust this value as needed */
+    white-space: nowrap; /* Prevents wrapping to new lines */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." to indicate truncated text */
+  }
+
+  &__btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+      fill: $color-primary;
+    }
   }
 }
 
