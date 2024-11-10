@@ -325,7 +325,20 @@ body {
   background-color: #f2efee;
 }
 
-.bookmarks {
+.cart {
+  width: 42.5rem !important;
+  right: -32.5rem !important;
+}
+.cart__list {
+  list-style: none;
+}
+.cart:hover, .nav__btn--cart:hover + .cart {
+  visibility: visible;
+  opacity: 1;
+}
+
+.bookmarks,
+.cart {
   padding: 1rem 0;
   position: absolute;
   right: -2.5rem;
@@ -337,10 +350,12 @@ body {
   opacity: 0;
   transition: all 0.5s 0.2s;
 }
-.bookmarks__list {
+.bookmarks__list,
+.cart__list {
   list-style: none;
 }
-.bookmarks__field {
+.bookmarks__field,
+.cart__field {
   cursor: pointer;
   padding: 0 4rem;
   display: flex;
@@ -348,10 +363,13 @@ body {
   height: 100%;
   transition: all 0.3s;
 }
-.bookmarks__field:hover {
+.bookmarks__field:hover,
+.cart__field:hover {
   background-color: #f2efee;
 }
-.bookmarks:hover, .nav__btn--bookmarks:hover + .bookmarks {
+.bookmarks:hover, .nav__btn--bookmarks:hover + .bookmarks,
+.cart:hover,
+.nav__btn--bookmarks:hover + .cart {
   visibility: visible;
   opacity: 1;
 }
@@ -587,6 +605,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem 3rem;
   list-style: none;
+  margin-bottom: 5rem;
 }
 .recipe__ingredient {
   display: flex;
