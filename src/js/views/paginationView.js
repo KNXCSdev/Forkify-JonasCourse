@@ -35,6 +35,7 @@ class PaginationView extends View {
     // Other page
     return `
       ${this._generateButtonMarkup("prev", curPage - 1)}
+      ${this._generateNumberPages(curPage, numPages)}
       ${this._generateButtonMarkup("next", curPage + 1)}
     `;
   }
@@ -47,6 +48,12 @@ class PaginationView extends View {
         ${direction === "next" ? this._generateIcon("right") : ""}
       </button>
     `;
+  }
+
+  _generateNumberPages(curpage, numpage) {
+    return `
+    <p class="pagination__pages">${curpage}/${numpage}</p>
+  `;
   }
 
   _generateIcon(direction) {
