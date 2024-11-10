@@ -103,8 +103,22 @@
     }
   }
 }
+.cart {
+  width: 42.5rem !important;
+  right: -32.5rem !important;
+  &__list {
+    list-style: none;
+  }
 
-.bookmarks {
+  &:hover,
+  .nav__btn--cart:hover + & {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.bookmarks,
+.cart {
   padding: 1rem 0;
   position: absolute;
   // right: 0;
