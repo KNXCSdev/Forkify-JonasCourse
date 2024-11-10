@@ -451,19 +451,21 @@ body {
 }
 
 .pagination {
+  display: flex;
+  justify-content: space-between;
   margin-top: auto;
   padding: 0 3.5rem;
+  align-items: center;
 }
-.pagination::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.pagination__btn--prev {
-  float: left;
+.pagination__pages {
+  font-size: 2.1rem;
+  color: #f38e82;
 }
 .pagination__btn--next {
-  float: right;
+  margin-left: auto;
+}
+.pagination__btn--prev {
+  margin-right: auto;
 }
 
 .copyright {
