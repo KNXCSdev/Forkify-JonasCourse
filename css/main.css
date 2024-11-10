@@ -331,10 +331,39 @@ body {
 }
 .cart__list {
   list-style: none;
+  padding: 2rem 3rem;
+  max-height: 50rem;
+  overflow-y: scroll;
+}
+.cart__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f48982;
 }
 .cart:hover, .nav__btn--cart:hover + .cart {
   visibility: visible;
   opacity: 1;
+}
+.cart__quantity {
+  font-size: 2rem;
+  line-height: 3;
+  width: 55ch; /* Adjust this value as needed */
+  white-space: nowrap; /* Prevents wrapping to new lines */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds "..." to indicate truncated text */
+}
+.cart__btn {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.cart__btn svg {
+  width: 2.4rem;
+  height: 2.4rem;
+  fill: #f38e82;
 }
 
 .bookmarks,
