@@ -99,10 +99,11 @@ const controlAddBookmark = function () {
 };
 
 const controlAddShopping = function () {
-  // Render updated cart view
-  model.state.cartIngredients = model.state.recipe.ingredients;
+  model.state.cartIngredients = model.state.recipe.ingredients.map((ingredient) => ({
+    ...ingredient,
+  }));
 
-  cartView.render(model.state.recipe.ingredients);
+  cartView.render(model.state.cartIngredients);
 };
 
 const controlDeleteCartItem = function (ingredientIndex) {
