@@ -1,8 +1,8 @@
 import View from "./View.js";
-
 // import icons from '../img/icons.svg'; // Parcel 1
 import icons from "url:../../img/icons.svg"; // Parcel 2
 import { numberToFraction } from "../helpers.js";
+import Chart from "chart.js/auto";
 
 class RecipeView extends View {
   _parentElement = document.querySelector(".recipe");
@@ -102,6 +102,8 @@ class RecipeView extends View {
         <btn class='btn--small btn--shop'>Add to shopping Cart</button>
       </div>
 
+       ${this._generateMarkupNutrition()}
+
       <div class="recipe__directions">
         <h2 class="heading--2">How to cook it</h2>
         <p class="recipe__directions-text">
@@ -138,6 +140,53 @@ class RecipeView extends View {
       </div>
     </li>
   `;
+  }
+
+  _generateMarkupNutrition() {
+    return `
+      <div class="recipe__nutrition">
+        <h2 class="heading--2">Nutrition Data</h2>
+        <div class="nutrition__data">
+          <canvas id="nutrition_chart"></canvas>
+          <div class="nutrition__quantity">
+            <p class="calories__text">Calories:</p>
+            <span class="calories__data">${this._data.nutrition.calories}</span>
+            <hr>
+            <p>Carbs: <span>${this._data.nutrition.carbs} - ${this._data.nutrition.caloricBreakdown.percentCarbs}%</span></p>
+            <p>Fat: <span>${this._data.nutrition.fat} - ${this._data.nutrition.caloricBreakdown.percentFat}%</span></p>
+            <p>Protein: <span>${this._data.nutrition.protein} - ${this._data.nutrition.caloricBreakdown.percentProtein}%</span></p>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  generateNutritionChart(recipeNutrition) {
+    const _canvas = document.getElementById("nutrition_chart");
+
+    // Get rid of error reusing canvas
+    if (Chart.getChart(_canvas)) Chart.getChart(_canvas).destroy();
+
+    const chart = new Chart(_canvas, {
+      type: "doughnut",
+      data: {
+        labels: ["Carbs", "Fat", "Protein"],
+        datasets: [
+          {
+            label: "Nutrition Breakdown",
+            data: [
+              recipeNutrition.caloricBreakdown.percentCarbs,
+              recipeNutrition.caloricBreakdown.percentFat,
+              recipeNutrition.caloricBreakdown.percentProtein,
+            ],
+            backgroundColor: ["#d3c7c3", "#f48982", "#fbdb89"],
+            hoverOffset: 4,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+      },
+    });
   }
 }
 

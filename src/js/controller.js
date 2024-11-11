@@ -39,8 +39,16 @@ const controlRecipes = async function () {
     //NOTE model.LoadRecipe selecting function from model.js it behaves like objects
     await model.loadRecipe(id);
 
+    await model.recipeNutrition(model.state.recipe.title.split(" ")[0]);
+
     //SECTION 2) Rendering recipe
     recipeView.render(model.state.recipe);
+
+    try {
+      recipeView.generateNutritionChart(model.state.recipe.nutrition);
+    } catch (error) {
+      console.log(error);
+    }
   } catch (err) {
     recipeView.renderError();
   }
