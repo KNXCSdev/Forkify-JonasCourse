@@ -107,8 +107,14 @@ const controlDeleteCartItem = function (ingredientIndex) {
   }
 };
 
+const controlDeleteAllCart = function () {
+  model.state.recipe.ingredients = [];
+
+  cartView.render(model.state.recipe.ingredients);
+};
+
 const controlAddShopping = function () {
-  //3) Render bookmarks
+  // Render updated cart view
   cartView.render(model.state.recipe.ingredients);
 };
 
@@ -154,6 +160,7 @@ const init = function () {
   recipeView.addHandlerAddShopping(controlAddShopping);
 
   cartView.addHandlerDeleteItem(controlDeleteCartItem); // Handle item deletion
+  cartView.addHandlerDeleteAll(controlDeleteAllCart); // Handle item deletion
 
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);

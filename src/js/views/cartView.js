@@ -18,23 +18,42 @@ class CartView extends View {
     });
   }
 
+  addHandlerDeleteAll(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const btn = e.target.closest(".cart--delete");
+      if (!btn) return;
+
+      handler();
+    });
+  }
+
   _generateMarkup() {
-    return this._data
-      .map(
-        (ingredient, index) => `
-        <li class="cart__item">
-          <div class="cart__quantity">${ingredient.quantity || ""} ${ingredient.unit || ""} ${
-          ingredient.description
-        }</div>
-        <button class="cart__btn" data-ingredient-index="${index}"> 
-          <svg>
-            <use href="${icons}#icon-minus-circle"></use>
-          </svg>
-        </button>
-        </li>
-      `
-      )
-      .join("");
+    return `
+      ${this._data
+        .map(
+          (ingredient, index) => `
+            <li class="cart__item">
+              <div class="cart__quantity">${ingredient.quantity || ""} ${ingredient.unit || ""} ${
+            ingredient.description
+          }</div>
+              <button class="cart__btn" data-ingredient-index="${index}"> 
+                <svg>
+                  <use href="${icons}#icon-minus-circle"></use>
+                </svg>
+              </button>
+            </li>
+          `
+        )
+        .join("")}
+        <div class='cart__flex'>
+      <button class="btn--small btn--shop cart--delete"> 
+        DELETE ALL
+      </button>
+      <button class="btn--small btn--shop cart--order"> 
+        ORDER
+      </button>
+      </div>
+    `;
   }
 }
 
