@@ -98,24 +98,27 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlAddShopping = function () {
+  // Render updated cart view
+  model.state.cartIngredients = model.state.recipe.ingredients;
+
+  cartView.render(model.state.recipe.ingredients);
+};
+
 const controlDeleteCartItem = function (ingredientIndex) {
   // Check if index is valid
-  if (ingredientIndex >= 0 && ingredientIndex < model.state.recipe.ingredients.length) {
-    model.state.recipe.ingredients.splice(ingredientIndex, 1);
 
-    cartView.render(model.state.recipe.ingredients);
+  if (ingredientIndex >= 0 && ingredientIndex < model.state.cartIngredients.length) {
+    model.state.cartIngredients.splice(ingredientIndex, 1);
+
+    cartView.render(model.state.cartIngredients);
   }
 };
 
 const controlDeleteAllCart = function () {
-  model.state.recipe.ingredients = [];
+  model.state.cartIngredients = [];
 
-  cartView.render(model.state.recipe.ingredients);
-};
-
-const controlAddShopping = function () {
-  // Render updated cart view
-  cartView.render(model.state.recipe.ingredients);
+  cartView.render(model.state.cartIngredients);
 };
 
 const controlBookmarks = function () {
@@ -159,8 +162,8 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   recipeView.addHandlerAddShopping(controlAddShopping);
 
-  cartView.addHandlerDeleteItem(controlDeleteCartItem); // Handle item deletion
-  cartView.addHandlerDeleteAll(controlDeleteAllCart); // Handle item deletion
+  cartView.addHandlerDeleteItem(controlDeleteCartItem);
+  cartView.addHandlerDeleteAll(controlDeleteAllCart);
 
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
