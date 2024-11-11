@@ -12,10 +12,12 @@ export const state = {
     resultsPerPage: RES_PER_PAGE,
   },
   bookmarks: [],
+  cartIngredients: [],
 };
 
 const createRecipeObject = function (data) {
   const { recipe } = data.data;
+
   return {
     id: recipe.id,
     title: recipe.title,
@@ -114,7 +116,6 @@ init();
 const clearBookmarks = function () {
   localStorage.clear("bookmarks");
 };
-// clearBookmarks();
 
 export const uploadRecipe = async function (newRecipe) {
   try {
