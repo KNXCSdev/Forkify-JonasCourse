@@ -1,5 +1,5 @@
 import { async } from "regenerator-runtime";
-import { API_URL, KEY, RES_PER_PAGE } from "./config.js";
+import { API_URL, KEY, RES_PER_PAGE, SPOON_KEY, SPOON_URL } from "./config.js";
 // import { getJSON, sendJSON } from "./helpers.js";
 import { AJAX } from "./helpers.js";
 
@@ -66,11 +66,42 @@ export const loadSearchResults = async function (query) {
   }
 };
 
+export const recipeNutrition = async function (query) {
+  try {
+    const data = await AJAX(
+      `${SPOON_URL}recipes/complexSearch?query=${query}&number=1&includeNutrition=true&apiKey=${SPOON_KEY}`
+    );
+
+    const id = data.results[0].id;
+
+    const productData = await AJAX(
+      `${SPOON_URL}recipes/${id}/nutritionWidget.json?apiKey=${SPOON_KEY}`
+    );
+
+    const nutritionData = {
+      calories: productData.calories,
+      carbs: productData.carbs,
+      fat: productData.fat,
+      protein: productData.protein,
+      caloricBreakdown: {
+        percentCarbs: productData.caloricBreakdown.percentCarbs,
+        percentFat: productData.caloricBreakdown.percentFat,
+        percentProtein: productData.caloricBreakdown.percentProtein,
+      },
+    };
+    state.recipe.nutrition = nutritionData;
+    console.log(nutritionData);
+  } catch (err) {
+    console.error(`${err} 💥💥💥`);
+    throw err;
+  }
+};
+
 export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
 
-  const start = (page - 1) * 10;
-  const end = page * 10;
+  const start = (page - 1) * 16;
+  const end = page * 16;
 
   return state.search.results.slice(start, end);
 };
