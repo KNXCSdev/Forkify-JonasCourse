@@ -106,11 +106,22 @@
 .cart {
   width: 42.5rem !important;
   right: -32.5rem !important;
+  .heading--2 {
+    margin-bottom: 0 !important;
+  }
   &__list {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     padding: 2rem 3rem;
     max-height: 50rem;
     overflow-y: scroll;
+  }
+
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__item {
@@ -118,6 +129,14 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $color-grad-2;
+  }
+
+  &--order,
+  &--delete {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
   }
 
   &:hover,
