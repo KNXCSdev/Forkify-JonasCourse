@@ -296,33 +296,99 @@
           <input value="23" required="" name="servings" type="number">
         </div>
 
-        <div class="upload__column upload__column--2">
+        <div class="upload__column">
           <h3 class="upload__heading">Ingredients</h3>
           <label>Ingredient 1</label>
-          <input value="0.5" type="text" required="" name="ingredient-1" placeholder="'Quantity'">
-          <input value="kg" type="text" required="" name="ingredient-1" placeholder="'Unit'">
-          <input value="Rice" type="text" required="" name="ingredient-1" placeholder="'Description'">
+          <div class="ingredients">
+            <input type="text" name="ingredient-1_quantity" required="" placeholder="'Quantity'">
+            <select name="ingredient-1_unit">
+              <option selected="" disabled="" hidden="">Unit</option>
+              <option value="gram">Gram</option>
+              <option value="milligram">Milligram</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="ounce">Ounce</option>
+              <option value="pound">Pound</option>
+              <option value="litre">Litre</option>
+              <option value="millilitre">Millilitre</option>
+            </select>
+            <input type="text" name="ingredient-1_description" required="" pattern="[A-Za-z]*" placeholder="'Description'">
+          </div>
 
           <label>Ingredient 2</label>
-          <input type="text" name="ingredient-2" placeholder="'Quantity'">
-          <input type="text" name="ingredient-2" placeholder="'Unit'">
-          <input type="text" name="ingredient-2" placeholder="'Description'">
+          <div class="ingredients">
+            <input type="text" name="ingredient-2_quantity" placeholder="'Quantity'">
+            <select name="ingredient-2_unit">
+              <option selected="" disabled="" hidden="">Unit</option>
+              <option value="gram">Gram</option>
+              <option value="milligram">Milligram</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="ounce">Ounce</option>
+              <option value="pound">Pound</option>
+              <option value="litre">Litre</option>
+              <option value="millilitre">Millilitre</option>
+            </select>
+            <input type="text" name="ingredient-2_description" pattern="[A-Za-z]*" placeholder="'Description'">
+          </div>
           <label>Ingredient 3</label>
-          <input type="text" name="ingredient-3" placeholder="'Quantity'">
-          <input type="text" name="ingredient-3" placeholder="'Unit'">
-          <input type="text" name="ingredient-3" placeholder="'Description'">
+          <div class="ingredients">
+            <input type="text" name="ingredient-3_quantity" placeholder="'Quantity'">
+            <select name="ingredient-3_unit">
+              <option selected="" disabled="" hidden="">Unit</option>
+              <option value="gram">Gram</option>
+              <option value="milligram">Milligram</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="ounce">Ounce</option>
+              <option value="pound">Pound</option>
+              <option value="litre">Litre</option>
+              <option value="millilitre">Millilitre</option>
+            </select>
+            <input type="text" name="ingredient-3_description" pattern="[A-Za-z]*" placeholder="'Description'">
+          </div>
           <label>Ingredient 4</label>
-          <input type="text" name="ingredient-4" placeholder="'Quantity'">
-          <input type="text" name="ingredient-4" placeholder="'Unit'">
-          <input type="text" name="ingredient-4" placeholder="'Description'">
+          <div class="ingredients">
+            <input type="text" name="ingredient-4_quantity" placeholder="'Quantity'">
+            <select name="ingredient-4_unit">
+              <option selected="" disabled="" hidden="">Unit</option>
+              <option value="gram">Gram</option>
+              <option value="milligram">Milligram</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="ounce">Ounce</option>
+              <option value="pound">Pound</option>
+              <option value="litre">Litre</option>
+              <option value="millilitre">Millilitre</option>
+            </select>
+            <input type="text" name="ingredient-4_description" pattern="[A-Za-z]*" placeholder="'Description'">
+          </div>
           <label>Ingredient 5</label>
-          <input type="text" name="ingredient-5" placeholder="'Quantity'">
-          <input type="text" name="ingredient-5" placeholder="'Unit'">
-          <input type="text" name="ingredient-5" placeholder="'Description'">
+          <div class="ingredients">
+            <input type="text" name="ingredient-5_quantity" placeholder="'Quantity'">
+            <select name="ingredient-5_unit">
+              <option selected="" disabled="" hidden="">Unit</option>
+              <option value="gram">Gram</option>
+              <option value="milligram">Milligram</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="ounce">Ounce</option>
+              <option value="pound">Pound</option>
+              <option value="litre">Litre</option>
+              <option value="millilitre">Millilitre</option>
+            </select>
+            <input type="text" name="ingredient-5_description" pattern="[A-Za-z]*" placeholder="'Description'">
+          </div>
           <label>Ingredient 6</label>
-          <input type="text" name="ingredient-6" placeholder="'Quantity'">
-          <input type="text" name="ingredient-6" placeholder="'Unit'">
-          <input type="text" name="ingredient-6" placeholder="'Description'">
+          <div class="ingredients">
+            <input type="text" name="ingredient-6_quantity" placeholder="'Quantity'">
+            <select name="ingredient-6_unit">
+              <option selected="" disabled="" hidden="">Unit</option>
+              <option value="gram">Gram</option>
+              <option value="milligram">Milligram</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="ounce">Ounce</option>
+              <option value="pound">Pound</option>
+              <option value="litre">Litre</option>
+              <option value="millilitre">Millilitre</option>
+            </select>
+            <input type="text" name="ingredient-6_description" pattern="[A-Za-z]*" placeholder="'Description'">
+          </div>
         </div>
 
         <button class="btn upload__btn">

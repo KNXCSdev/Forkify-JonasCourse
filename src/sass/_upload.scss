@@ -82,15 +82,6 @@
       justify-self: center;
       margin-top: 1rem;
     }
-
-    &--2 {
-      grid-template-columns: repeat(4, 1fr);
-
-      input {
-        width: 9.3rem;
-        padding: 0.8rem 0.5rem;
-      }
-    }
   }
 
   &__heading {
@@ -104,5 +95,20 @@
   &__btn {
     grid-column: 1 / -1;
     justify-self: center;
+  }
+}
+
+.ingredients {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    width: 100%;
+  }
+  select {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 0.6rem 0.8rem;
   }
 }
