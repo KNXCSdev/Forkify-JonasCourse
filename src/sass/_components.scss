@@ -34,6 +34,13 @@
     width: 2.25rem;
     fill: currentColor;
   }
+
+  &--shop {
+    padding: 1.25rem 1.5rem !important;
+    svg {
+      margin-left: 1rem;
+    }
+  }
 }
 
 .btn--small {

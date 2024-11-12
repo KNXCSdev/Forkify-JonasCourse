@@ -82,6 +82,15 @@
       justify-self: center;
       margin-top: 1rem;
     }
+
+    &--2 {
+      grid-template-columns: repeat(4, 1fr);
+
+      input {
+        width: 9.3rem;
+        padding: 0.8rem 0.5rem;
+      }
+    }
   }
 
   &__heading {

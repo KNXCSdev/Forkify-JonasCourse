@@ -99,7 +99,11 @@ class RecipeView extends View {
         <ul class="recipe__ingredient-list">
           ${this._data.ingredients.map(this._generateMarkupIngredient).join("")}
           </ul>
-        <btn class='btn--small btn--shop'>Add to shopping Cart</button>
+        <btn class='btn--small btn--shop'>Add to shopping Cart 
+         <svg class="recipe__icon">
+        <use href="${icons}#icon-plus-circle"></use>
+      </svg>
+        </button>
       </div>
 
        ${this._generateMarkupNutrition()}
