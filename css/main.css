@@ -812,13 +812,6 @@ body {
   justify-self: center;
   margin-top: 1rem;
 }
-.upload__column--2 {
-  grid-template-columns: repeat(4, 1fr);
-}
-.upload__column--2 input {
-  width: 9.3rem;
-  padding: 0.8rem 0.5rem;
-}
 .upload__heading {
   font-size: 2.25rem;
   font-weight: 700;
@@ -829,4 +822,18 @@ body {
 .upload__btn {
   grid-column: 1/-1;
   justify-self: center;
+}
+
+.ingredients {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ingredients input {
+  width: 100%;
+}
+.ingredients select {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0.6rem 0.8rem;
 }

@@ -73,7 +73,7 @@ export const recipeNutrition = async function (query) {
     );
 
     const id = data.results[0].id;
-
+    if (!id) return;
     const productData = await AJAX(
       `${SPOON_URL}recipes/${id}/nutritionWidget.json?apiKey=${SPOON_KEY}`
     );
@@ -150,19 +150,28 @@ const clearBookmarks = function () {
 
 export const uploadRecipe = async function (newRecipe) {
   try {
-    //Upload the newRecipe
     const ingredients = Object.entries(newRecipe)
-      .filter((entry) => entry[0].startsWith("ingredient") && entry[1] !== "")
-      .map((ing) => {
-        const ingArr = ing[1].split(",").map((el) => el.trim());
-        // const ingArr = ing[1].replaceAll(' ', '').split(',');
-        if (ingArr.length !== 3)
-          throw new Error("Wrong ingredient fromat! Please use the correct format :)");
+      .filter((entry) => {
+        return (
+          entry[0].startsWith("ingredient") &&
+          (entry[0].includes("_quantity") ||
+            entry[0].includes("_unit") ||
+            entry[0].includes("_description")) &&
+          entry[1] !== ""
+        );
+      })
+      .reduce((acc, key) => {
+        const match = key[0].match(/ingredient(-\d+)(_quantity|_unit|_description)/);
 
-        const [quantity, unit, description] = ingArr;
+        const index = match[1].replace("-", "") - 1;
+        const type = match[2].replace("_", "");
 
-        return { quantity: quantity ? +quantity : null, unit, description };
-      });
+        if (!acc[index]) acc[index] = { quantity: null, unit: "", description: "" };
+
+        acc[index][type] = key[1];
+
+        return acc;
+      }, []);
 
     const recipe = {
       title: newRecipe.title,
@@ -173,7 +182,6 @@ export const uploadRecipe = async function (newRecipe) {
       servings: +newRecipe.servings,
       ingredients,
     };
-
     const data = await AJAX(`${API_URL}?key=${KEY}`, recipe);
     state.recipe = createRecipeObject(data);
     addBookmark(state.recipe);
