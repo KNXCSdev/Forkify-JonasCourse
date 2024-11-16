@@ -154,27 +154,11 @@ class RecipeView extends View {
           <canvas id="nutrition_chart"></canvas>
           <div class="nutrition__quantity">
             <p class="calories__text">Calories:</p>
-            <span class="calories__data">${
-              this._data?.nutrition?.calories ? this._data.nutrition.calories : ""
-            }</span>
+            <span class="calories__data">${this._data?.nutrition?.calories}</span>
             <hr>
-            <p>Carbs: <span>${this._data?.nutrition?.carbs ? this._data.nutrition.carbs : ""} - ${
-      this._data.nutrition?.caloricBreakdown?.percentCarbs
-        ? this._data.caloricBreakdown.percentCarbs
-        : ""
-    }%</span></p>
-            <p>Fat: <span>${this._data.nutrition?.fat ? this._data.nutrition.fat : ""} - ${
-      this._data.nutrition?.caloricBreakdown?.percentFat
-        ? this._data.nutrition.caloricBreakdown.percentFat
-        : ""
-    }%</span></p>
-            <p>Protein: <span>${
-              this._data.nutrition?.protein ? this._data.nutrition?.protein : ""
-            } - ${
-      this._data.nutrition?.caloricBreakdown?.percentProtein
-        ? this._data.nutrition.caloricBreakdown.percentProtein
-        : ""
-    }%</span></p>
+            <p>Carbs: <span>${this._data?.nutrition?.carbs} - ${this._data.nutrition?.caloricBreakdown?.percentCarbs}%</span></p>
+            <p>Fat: <span>${this._data.nutrition?.fat} - ${this._data.nutrition?.caloricBreakdown?.percentFat}%</span></p>
+            <p>Protein: <span>${this._data.nutrition?.protein} - ${this._data.nutrition?.caloricBreakdown?.percentProtein}%</span></p>
           </div>
         </div>
       </div>`;
