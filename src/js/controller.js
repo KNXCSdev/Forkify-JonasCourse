@@ -42,6 +42,7 @@ const controlRecipes = async function () {
     await model.recipeNutrition(model.state.recipe.title.split(" ")[0]);
 
     //SECTION 2) Rendering recipe
+
     recipeView.render(model.state.recipe);
 
     try {
@@ -107,10 +108,8 @@ const controlAddBookmark = function () {
 };
 
 const controlAddShopping = function () {
-  model.state.cartIngredients = model.state.recipe.ingredients.map((ingredient) => ({
-    ...ingredient,
-  }));
-
+  model.addIngredients();
+  console.log(model.state.cartIngredients);
   cartView.render(model.state.cartIngredients);
 };
 
@@ -128,6 +127,13 @@ const controlDeleteAllCart = function () {
   model.state.cartIngredients = [];
 
   cartView.render(model.state.cartIngredients);
+};
+const controlOrder = function () {
+  cartView.renderSpinner();
+
+  setTimeout(() => {
+    cartView.renderMessage();
+  }, 1000);
 };
 
 const controlBookmarks = function () {
@@ -173,6 +179,7 @@ const init = function () {
 
   cartView.addHandlerDeleteItem(controlDeleteCartItem);
   cartView.addHandlerDeleteAll(controlDeleteAllCart);
+  cartView.addHandlerOrder(controlOrder);
 
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);

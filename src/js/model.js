@@ -148,6 +148,12 @@ const clearBookmarks = function () {
   localStorage.clear("bookmarks");
 };
 
+export const addIngredients = function () {
+  state.cartIngredients = state.recipe.ingredients.map((ingredient) => ({
+    ...ingredient,
+  }));
+};
+
 export const uploadRecipe = async function (newRecipe) {
   try {
     const ingredients = Object.entries(newRecipe)
