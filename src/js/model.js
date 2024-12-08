@@ -55,7 +55,7 @@ export const loadSearchResults = async function (query) {
         id: rec.id,
         title: rec.title,
         publisher: rec.publisher,
-        image: rec.image_url,
+        imageUrl: rec.image_url,
         ...(rec.key && { key: rec.key }),
       };
     });
@@ -119,6 +119,10 @@ const persistBookmarks = function () {
   localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
 };
 
+export const persistCart = function () {
+  localStorage.setItem("cart", JSON.stringify(state.cartIngredients));
+};
+
 export const addBookmark = function (recipe) {
   //Add bookmark
   state.bookmarks.push(recipe);
@@ -140,7 +144,9 @@ export const deleteBookmark = function (id) {
 
 const init = function () {
   const storage = localStorage.getItem("bookmarks");
+  const cart = localStorage.getItem("cart");
   if (storage) state.bookmarks = JSON.parse(storage);
+  if (cart) state.cartIngredients = JSON.parse(cart);
 };
 init();
 
@@ -152,6 +158,18 @@ export const addIngredients = function () {
   state.cartIngredients = state.recipe.ingredients.map((ingredient) => ({
     ...ingredient,
   }));
+  persistCart();
+};
+
+export const deleteCartItem = function (ingredientIndex) {
+  state.cartIngredients.splice(ingredientIndex, 1);
+
+  persistCart();
+};
+
+export const deleteAllCart = function () {
+  state.cartIngredients = [];
+  persistCart();
 };
 
 export const uploadRecipe = async function (newRecipe) {
