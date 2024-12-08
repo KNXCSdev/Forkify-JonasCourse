@@ -35,6 +35,8 @@ const controlRecipes = async function () {
     //UPDATING BOOKMARKSVIEW
     bookmarksView.update(model.state.bookmarks);
 
+    cartView.render(model.state.cartIngredients);
+
     // 1) Loading Recipe
     //NOTE model.LoadRecipe selecting function from model.js it behaves like objects
     await model.loadRecipe(id);
@@ -109,7 +111,7 @@ const controlAddBookmark = function () {
 
 const controlAddShopping = function () {
   model.addIngredients();
-  console.log(model.state.cartIngredients);
+
   cartView.render(model.state.cartIngredients);
 };
 
@@ -117,23 +119,29 @@ const controlDeleteCartItem = function (ingredientIndex) {
   // Check if index is valid
 
   if (ingredientIndex >= 0 && ingredientIndex < model.state.cartIngredients.length) {
-    model.state.cartIngredients.splice(ingredientIndex, 1);
+    model.deleteCartItem(ingredientIndex);
 
     cartView.render(model.state.cartIngredients);
   }
+  if (model.state.cartIngredients.length === 0)
+    cartView.renderMessage(
+      "No items in cart yet. Find a nice recipe and add the ingredients to a cart :)"
+    );
 };
 
 const controlDeleteAllCart = function () {
-  model.state.cartIngredients = [];
-
-  cartView.render(model.state.cartIngredients);
+  model.deleteAllCart();
+  cartView.renderMessage(
+    "No items in cart yet. Find a nice recipe and add the ingredients to a cart :)"
+  );
 };
+
 const controlOrder = function () {
   cartView.renderSpinner();
-
   setTimeout(() => {
     cartView.renderMessage();
   }, 1000);
+  model.deleteAllCart();
 };
 
 const controlBookmarks = function () {
