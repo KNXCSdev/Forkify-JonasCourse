@@ -5,7 +5,7 @@ import icons from "url:../../img/icons.svg";
 class CartView extends View {
   _parentElement = document.querySelector(".cart__list");
   _errorMessage = "No items in cart yet. Find a nice recipe and add the ingredients to a cart :)";
-  _message = "";
+  _message = "Succesfully Ordered";
 
   addHandlerDeleteItem(handler) {
     this._parentElement.addEventListener("click", function (e) {
@@ -21,6 +21,15 @@ class CartView extends View {
   addHandlerDeleteAll(handler) {
     this._parentElement.addEventListener("click", function (e) {
       const btn = e.target.closest(".cart--delete");
+      if (!btn) return;
+
+      handler();
+    });
+  }
+
+  addHandlerOrder(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const btn = e.target.closest(".cart--order");
       if (!btn) return;
 
       handler();
